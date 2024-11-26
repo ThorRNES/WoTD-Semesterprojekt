@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WoTD Semesterprojekt", "WoT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoTDUnitTest", "WoTDUnitTest\WoTDUnitTest.csproj", "{7B3F3CE0-3483-4A7B-9E6C-CC94448AE3CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoTDController", "WoTDController\WoTDController.csproj", "{046A92D4-59A1-4915-B517-71AA84EA43CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7B3F3CE0-3483-4A7B-9E6C-CC94448AE3CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B3F3CE0-3483-4A7B-9E6C-CC94448AE3CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B3F3CE0-3483-4A7B-9E6C-CC94448AE3CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{046A92D4-59A1-4915-B517-71AA84EA43CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{046A92D4-59A1-4915-B517-71AA84EA43CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{046A92D4-59A1-4915-B517-71AA84EA43CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{046A92D4-59A1-4915-B517-71AA84EA43CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
