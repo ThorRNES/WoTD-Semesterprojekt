@@ -15,6 +15,13 @@ namespace WoTDUnitTest
 
 
 
+
+        [TestMethod()]
+        public void ToStringTest()
+        {
+            Assert.AreEqual("Incline Hammercurls Strength Strength Dumpbell Beginner Seat yourself...", exerciseTrue.ToString());
+        }
+
         [TestMethod]
 
         public void ValidateValidate()
