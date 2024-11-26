@@ -35,6 +35,8 @@ namespace WoTDUnitTest
             personTrue.ValidateGender();
             Assert.ThrowsException<ArgumentNullException>(() => personGenderNull.ValidateGender());
         }
+
+
         [TestMethod]
         public void ValidateAgeTest()
         {
@@ -68,5 +70,30 @@ namespace WoTDUnitTest
         {
             personTrue.Validate();
         }
+
+        [DataRow(13)]
+        [DataRow(14)]
+        [DataRow(99)]
+        [DataRow(100)]
+        [TestMethod]
+        public void ValidateBoundaryAgeTestLegal(int age)
+        {
+            Person personTrue = new Person { FName = "Thor Russel", Gender = "Mand", Age = age, AvgPulse = 125, Weight = 65, Height = 172 };
+            personTrue.ValidateAge();
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => personAgeNeg.ValidateAge());
+        }
+
+        [DataRow(12)]
+        [DataRow(101)]
+        [TestMethod]
+        public void ValidateBoundaryAgeTestIllegal(int age)
+        {
+            Person personTrue = new Person { FName = "Thor Russel", Gender = "Mand", Age = age, AvgPulse = 125, Weight = 65, Height = 172 };
+            personTrue.ValidateAge();
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => personAgeNeg.ValidateAge());
+        }
+
     }
 }
