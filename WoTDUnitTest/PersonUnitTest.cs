@@ -70,29 +70,59 @@ namespace WoTDUnitTest
         {
             personTrue.Validate();
         }
-
+        [TestMethod]
         [DataRow(13)]
         [DataRow(14)]
         [DataRow(99)]
         [DataRow(100)]
-        [TestMethod]
+
         public void ValidateBoundaryAgeTestLegal(int age)
         {
-            Person personTrue = new Person { FName = "Thor Russel", Gender = "Mand", Age = age, AvgPulse = 125, Weight = 65, Height = 172 };
-            personTrue.ValidateAge();
+            Person person = new Person { FName = "Thor Russel", Gender = "Mand", Age = age, AvgPulse = 125, Weight = 65, Height = 172 };
 
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => personAgeNeg.ValidateAge());
+            person.ValidateAge(); 
+            
         }
-
+        [TestMethod]
         [DataRow(12)]
         [DataRow(101)]
-        [TestMethod]
+
         public void ValidateBoundaryAgeTestIllegal(int age)
         {
-            Person personTrue = new Person { FName = "Thor Russel", Gender = "Mand", Age = age, AvgPulse = 125, Weight = 65, Height = 172 };
-            personTrue.ValidateAge();
+            Person person = new Person { FName = "Thor Russel", Gender = "Mand", Age = age, AvgPulse = 125, Weight = 65, Height = 172 };
+          
 
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => personAgeNeg.ValidateAge());
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => person.ValidateAge());
+        }
+
+       
+        [TestMethod]
+        [DataRow(50)]
+        [DataRow(51)]
+        [DataRow(199)]
+        [DataRow(200)]
+        
+        public void ValidateBoundaryPulseTestLegal(int pulse)
+        {
+            Person person = new Person { FName = "Thor Russel", Gender = "Mand", Age = 18, AvgPulse = pulse, Weight = 65, Height = 172 };
+
+
+            person.ValidateAvgPulse();
+
+
+        }
+
+
+        [TestMethod]
+        [DataRow(49)]
+        [DataRow(201)]
+        public void ValidateBoundaryPulseTestIllegal(int pulse)
+        {
+            Person person = new Person { FName = "Thor Russel", Gender = "Mand", Age = 18, AvgPulse = pulse, Weight = 65, Height = 172 };
+            
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => person.ValidateAvgPulse());
+
         }
 
     }
