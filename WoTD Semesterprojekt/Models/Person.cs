@@ -8,12 +8,24 @@ namespace WorkOutToDO.Models
 {
     public class Person
     {
+        public int Id { get; set; }
         public string FName { get; set; }
         public string Gender { get; set; }
         public int? Age { get; set; }
         public int? AvgPulse { get; set; }
         public int? Weight { get; set; }
         public int? Height { get; set; }
+
+        public Person(int id, string fName, string gender, int? age, int? avgPulse, int? weight, int? height)
+        {
+            Id = id;
+            FName = fName;
+            Gender = gender;
+            Age = age;
+            AvgPulse = avgPulse;
+            Weight = weight;
+            Height = height;
+        }
 
         public Person()
         {
