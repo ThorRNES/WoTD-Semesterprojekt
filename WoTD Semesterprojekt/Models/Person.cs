@@ -30,12 +30,14 @@ namespace WorkOutToDO.Models
         public void ValidateAge()
         {
             if (Age == null) throw new ArgumentNullException("Age cannot be null");
-            if (Age < 0) throw new ArgumentOutOfRangeException("Age cannot be less than zero");
+            if (Age > 100) throw new ArgumentOutOfRangeException("Age cannot be more than 100");
+            if (Age < 13) throw new ArgumentOutOfRangeException("Age cannot be less than 13"); 
         }
         public void ValidateAvgPulse()
         {
             if (AvgPulse == null) throw new ArgumentNullException("Pulse cannot be null");
-            if (AvgPulse < 0) throw new ArgumentOutOfRangeException("Pulse cannot be less than zero");
+            if (AvgPulse < 50) throw new ArgumentOutOfRangeException("Pulse cannot be less than 50");
+            if (AvgPulse > 200) throw new ArgumentOutOfRangeException("Pulse cannot be more than 200");
         }
         public void ValidateWeight()
         {
