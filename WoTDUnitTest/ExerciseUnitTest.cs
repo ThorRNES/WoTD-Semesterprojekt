@@ -13,7 +13,148 @@ namespace WoTDUnitTest
         private Exercise exerciseDiffiNull = new Exercise { Name = "Incline Hammercurls", Type = "Strength", Muscle = "Strength", Equipment = "Dumpbell", Difficulty = null, Instructions = "Seat yourself..." };
         private Exercise exerciseInstruNull = new Exercise { Name = "Incline Hammercurls", Type = "Strength", Muscle = "Strength", Equipment = "Dumpbell", Difficulty = "Beginner", Instructions = null };
 
+        [TestMethod]
+        public void Equals_WithIdenticalObjects_ReturnsTrue()
+        {
+            // Arrange
+            var exercise1 = new Exercise
+            {
+                Name = "Push-Up",
+                Type = "Strength",
+                Muscle = "Chest",
+                Equipment = "Bodyweight",
+                Difficulty = "Easy",
+                Instructions = "Start in a plank position and lower your body."
+            };
+            var exercise2 = new Exercise
+            {
+                Name = "Push-Up",
+                Type = "Strength",
+                Muscle = "Chest",
+                Equipment = "Bodyweight",
+                Difficulty = "Easy",
+                Instructions = "Start in a plank position and lower your body."
+            };
 
+            // Act
+            var areEqual = exercise1.Equals(exercise2);
+
+            // Assert
+            Assert.IsTrue(areEqual);
+        }
+
+        [TestMethod]
+        public void Equals_WithDifferentObjects_ReturnsFalse()
+        {
+            // Arrange
+            var exercise1 = new Exercise
+            {
+                Name = "Push-Up",
+                Type = "Strength",
+                Muscle = "Chest",
+                Equipment = "Bodyweight",
+                Difficulty = "Easy",
+                Instructions = "Start in a plank position and lower your body."
+            };
+            var exercise2 = new Exercise
+            {
+                Name = "Squat",
+                Type = "Strength",
+                Muscle = "Legs",
+                Equipment = "Bodyweight",
+                Difficulty = "Medium",
+                Instructions = "Stand with feet shoulder-width apart and lower your hips."
+            };
+
+            // Act
+            var areEqual = exercise1.Equals(exercise2);
+
+            // Assert
+            Assert.IsFalse(areEqual);
+        }
+
+        [TestMethod]
+        public void Equals_WithNull_ReturnsFalse()
+        {
+            // Arrange
+            var exercise = new Exercise
+            {
+                Name = "Push-Up",
+                Type = "Strength",
+                Muscle = "Chest",
+                Equipment = "Bodyweight",
+                Difficulty = "Easy",
+                Instructions = "Start in a plank position and lower your body."
+            };
+
+            // Act
+            var areEqual = exercise.Equals(null);
+
+            // Assert
+            Assert.IsFalse(areEqual);
+        }
+
+        [TestMethod]
+        public void GetHashCode_WithIdenticalObjects_ReturnsSameHashCode()
+        {
+            // Arrange
+            var exercise1 = new Exercise
+            {
+                Name = "Push-Up",
+                Type = "Strength",
+                Muscle = "Chest",
+                Equipment = "Bodyweight",
+                Difficulty = "Easy",
+                Instructions = "Start in a plank position and lower your body."
+            };
+            var exercise2 = new Exercise
+            {
+                Name = "Push-Up",
+                Type = "Strength",
+                Muscle = "Chest",
+                Equipment = "Bodyweight",
+                Difficulty = "Easy",
+                Instructions = "Start in a plank position and lower your body."
+            };
+
+            // Act
+            var hashCode1 = exercise1.GetHashCode();
+            var hashCode2 = exercise2.GetHashCode();
+
+            // Assert
+            Assert.AreEqual(hashCode1, hashCode2);
+        }
+
+        [TestMethod]
+        public void GetHashCode_WithDifferentObjects_ReturnsDifferentHashCodes()
+        {
+            // Arrange
+            var exercise1 = new Exercise
+            {
+                Name = "Push-Up",
+                Type = "Strength",
+                Muscle = "Chest",
+                Equipment = "Bodyweight",
+                Difficulty = "Easy",
+                Instructions = "Start in a plank position and lower your body."
+            };
+            var exercise2 = new Exercise
+            {
+                Name = "Squat",
+                Type = "Strength",
+                Muscle = "Legs",
+                Equipment = "Bodyweight",
+                Difficulty = "Medium",
+                Instructions = "Stand with feet shoulder-width apart and lower your hips."
+            };
+
+            // Act
+            var hashCode1 = exercise1.GetHashCode();
+            var hashCode2 = exercise2.GetHashCode();
+
+            // Assert
+            Assert.AreNotEqual(hashCode1, hashCode2);
+        }
 
 
         [TestMethod()]
@@ -21,6 +162,7 @@ namespace WoTDUnitTest
         {
             Assert.AreEqual("Incline Hammercurls Strength Strength Dumpbell Beginner Seat yourself...", exerciseTrue.ToString());
         }
+
 
         [TestMethod]
 
