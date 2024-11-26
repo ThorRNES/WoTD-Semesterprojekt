@@ -88,7 +88,7 @@ namespace WorkOutToDO.Models
 
         public override string ToString()
         {
-            return $"{{{nameof(FName)}={FName}, {nameof(Gender)}={Gender}, {nameof(Age)}={Age.ToString()}, {nameof(AvgPulse)}={AvgPulse}, {nameof(Weight)}={Weight.ToString()}, {nameof(Height)}={Height.ToString()}}}";
+            return $"{Id} {FName} {Gender} {Age} {AvgPulse} {Weight} {Height}";
         }
     }
 }
