@@ -1,10 +1,10 @@
-name: Build and deploy .NET Core application to Web App WoTDController
+name: Build and deploy .NET Core application to Web App WoTDController20241127125105
 on:
   push:
     branches:
     - master
 env:
-  AZURE_WEBAPP_NAME: WoTDController
+  AZURE_WEBAPP_NAME: WoTDController20241127125105
   AZURE_WEBAPP_PACKAGE_PATH: WoTDController\published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 8.0.x
@@ -44,5 +44,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.WoTDController_94A1 }}
+        publish-profile: ${{ secrets.WoTDController20241127125105_4E39 }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
