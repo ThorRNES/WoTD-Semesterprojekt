@@ -50,22 +50,35 @@ namespace WoTDUnitTest
             Assert.AreEqual(persons.First().FName, "Martin Skytte");
 
             IEnumerable<Person> sortedPersons = _repo.Get(orderBy: "fname");
+            IEnumerable<Person> sortedPersonsdesc = _repo.Get(orderBy: "fname_desc");
             Assert.AreEqual(sortedPersons.First().FName, "Arda Hansen");
+            Assert.AreEqual(sortedPersonsdesc.First().FName, "Thomas Bruun");
 
             IEnumerable<Person> sortedPersons2 = _repo.Get(orderBy: "gender");
+            IEnumerable<Person> sortedPersons2desc = _repo.Get(orderBy: "gender_desc");
+            Assert.AreEqual(sortedPersons2desc.First().Gender, "Male");
             Assert.AreEqual(sortedPersons2.First().Gender, "Female");
 
             IEnumerable<Person> sortedPersons3 = _repo.Get(orderBy: "age");
+            IEnumerable<Person> sortedPersons3desc = _repo.Get(orderBy: "age_desc");
+            Assert.AreEqual(sortedPersons3desc.First().Age, 72);
             Assert.AreEqual(sortedPersons3.First().Age, 22);
+           
 
             IEnumerable<Person> sortedPersons4 = _repo.Get(orderBy: "avgpulse");
+            IEnumerable<Person> sortedPersons4desc = _repo.Get(orderBy: "avgpulse_desc");
             Assert.AreEqual(sortedPersons4.First().AvgPulse, 100);
+            Assert.AreEqual(sortedPersons4desc.First().AvgPulse, 170);
 
             IEnumerable<Person> sortedPersons5 = _repo.Get(orderBy: "weight");
+            IEnumerable<Person> sortedPersons5desc = _repo.Get(orderBy: "weight_desc");
             Assert.AreEqual(sortedPersons5.First().Weight, 40);
+            Assert.AreEqual(sortedPersons5desc.First().Weight, 70);
 
             IEnumerable<Person> sortedPersons6 = _repo.Get(orderBy: "height");
+            IEnumerable<Person> sortedPersons6desc = _repo.Get(orderBy: "height_desc");
             Assert.AreEqual(sortedPersons6.First().Height, 144);
+            Assert.AreEqual(sortedPersons6desc.First().Height, 195);
                 
 
         }
