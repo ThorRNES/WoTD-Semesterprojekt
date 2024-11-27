@@ -3,6 +3,7 @@ using WorkOutToDO.Repos;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpClient();
 // Add services to the container.
 builder.Services.AddSingleton<Func<Person, int>>(provider => person => person.Id);
 builder.Services.AddSingleton<GenericRepo<Person>>();

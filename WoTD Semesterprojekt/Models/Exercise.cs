@@ -1,4 +1,6 @@
-﻿using System.Reflection.Metadata.Ecma335;
+﻿using System.Reflection;
+using System.Reflection.Metadata.Ecma335;
+using System.Xml.Linq;
 
 namespace WorkOutToDO.Models
 {
@@ -82,12 +84,10 @@ namespace WorkOutToDO.Models
         {
             return HashCode.Combine(Name, Type, Muscle, Equipment, Difficulty, Instructions);
         }
-
         public override string ToString()
         {
-            return $"{{{nameof(Name)}={Name}, {nameof(Type)}={Type}, {nameof(Muscle)}={Muscle}, {nameof(Equipment)}={Equipment}, {nameof(Difficulty)}={Difficulty}, {nameof(Instructions)}={Instructions}}}";
+            return $"{Name} {Type} {Muscle} {Equipment} {Difficulty} {Instructions}";
         }
-
     }
 
 
