@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WorkOutToDO.Models;
+using WoTD_Semesterprojekt.Models;
 
 namespace WoTDUnitTest
 {
@@ -11,6 +12,11 @@ namespace WoTDUnitTest
     public class PersonUnitTest
     {
         private Person personTrue = new Person { Id = 1, FName = "Thor Russel", Gender = "Mand", Age = 25, AvgPulse = 125, Weight = 65, Height = 172 };
+        private Person measurementNull = new Person { Id = 1, FName = "Thor Russel", Gender = "Mand", Age = 25, AvgPulse = 125, Weight = 65, Height = 172, Measurements = null };
+
+        private Person personTrueMeasurement = new Person { Id = 13, FName = "Thor Russel", Gender = "Mand", Age = 25, AvgPulse = 125, Weight = 65, Height = 172, Measurements = new List<Measurement> { new Measurement { Pulse = 125, Date = "2024-11-29" } } };
+
+
         private Person personNameNull = new Person { Id = 2, FName = null, Gender = "Mand", Age = 25, AvgPulse = 125, Weight = 65, Height = 172 };
         private Person personGenderNull = new Person { Id = 3, FName = "Thor Russel", Gender = null, Age = 25, AvgPulse = 125, Weight = 65, Height = 172 };
         private Person personAgeNull = new Person { Id = 4, FName = "Thor Russel", Gender = "Mand", Age = null, AvgPulse = 125, Weight = 65, Height = 172 };
@@ -21,6 +27,7 @@ namespace WoTDUnitTest
         private Person personWeightNeg = new Person { Id = 9, FName = "Thor Russel", Gender = "Mand", Age = 25, AvgPulse = 125, Weight = -65, Height = 172 };
         private Person personHeightNull = new Person { Id = 10, FName = "Thor Russel", Gender = "Mand", Age = 25, AvgPulse = 125, Weight = 65, Height = null };
         private Person personHeightNeg = new Person { Id = 11, FName = "Thor Russel", Gender = "Mand", Age = 25, AvgPulse = 125, Weight = 65, Height = -172 };
+
 
         [TestMethod()]
         public void ToStringTest()
@@ -99,7 +106,13 @@ namespace WoTDUnitTest
             personTrue.ValidateFName();
             Assert.ThrowsException<ArgumentNullException>(() => personNameNull.ValidateFName());
         }
+        [TestMethod]
+        public void ValidateMeasurementTest()
+        {
+            personTrueMeasurement.ValidateMeasurements();
+            Assert.ThrowsException<ArgumentNullException>(() => measurementNull.ValidateMeasurements());
 
+        }
         [TestMethod]
         public void ValidateGenderTest()
         {
