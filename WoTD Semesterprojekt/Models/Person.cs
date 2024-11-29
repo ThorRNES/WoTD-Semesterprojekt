@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WoTD_Semesterprojekt.Models;
 
 namespace WorkOutToDO.Models
 {
@@ -15,6 +17,7 @@ namespace WorkOutToDO.Models
         public int? AvgPulse { get; set; }
         public int? Weight { get; set; }
         public int? Height { get; set; }
+        public List<Measurement> Measurements { get; set; } = new();
 
         public Person(int id, string fName, string gender, int? age, int? avgPulse, int? weight, int? height)
         {
@@ -30,7 +33,16 @@ namespace WorkOutToDO.Models
         public Person()
         {
         }
-
+        public void ValidateMeasurements()
+        {
+            if (Measurements == null) throw new ArgumentNullException("Measurements cannot be null");
+            foreach (var measurement in Measurements)
+            {
+                if (measurement.Pulse < 0) throw new ArgumentOutOfRangeException("Pulse cannot be less than zero");
+                if (DateTime.TryParse(measurement.Date, out _) == false)
+                    throw new FormatException("Invalid date format in measurements.");
+            }
+        }
         public void ValidateFName()
         {
             if (FName == null) throw new ArgumentNullException("Name cannot be null");
@@ -69,6 +81,7 @@ namespace WorkOutToDO.Models
             ValidateAvgPulse();
             ValidateWeight();
             ValidateHeight();
+            ValidateMeasurements();
         }
         public override bool Equals(object? obj)
         {
