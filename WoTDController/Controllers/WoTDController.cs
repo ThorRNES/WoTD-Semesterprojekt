@@ -2,6 +2,7 @@
 using WorkOutToDO.Models;
 using WorkOutToDO.Repos;
 using WoTD_Semesterprojekt;
+using WoTD_Semesterprojekt.Models;
 using WoTD_Semesterprojekt.Repos;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -21,7 +22,24 @@ namespace WoTDController.Controllers
 
         }
 
+        [HttpPost("{id}/measurements")]
+        public ActionResult AddMeasurement(int id, [FromBody] Measurement measurement)
+        {
+            if (measurement == null)
+            {
+                return BadRequest("Measurement data is null.");
+            }
 
+            var person = _repo.GetById(id);
+            if (person == null)
+            {
+                return NotFound($"No person found with ID {id}.");
+            }
+
+            person.Measurements.Add(measurement);
+
+            return Ok($"Measurement added successfully to person with ID {id}.");
+        }
         // GET: api/<WoTDController>
         [HttpGet]
         public IEnumerable<Person> Get()
