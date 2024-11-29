@@ -36,18 +36,18 @@ namespace WoTDUnitTest
             //else
             { _repo = new PersonRepo(); }
 
-            _repo.Add(new Person() { Id = 1, FName = "Martin Skytte", Gender = "Male", Age = 59, AvgPulse = 120, Weight = 68, Height = 195 });
-            _repo.Add(new Person() { Id = 2, FName = "Thomas Bruun", Gender = "Male", Age = 30, AvgPulse = 135, Weight = 58, Height = 182 });
-            _repo.Add(new Person() { Id = 3, FName = "Arda Hansen", Gender = "Male", Age = 22, AvgPulse = 100, Weight = 70, Height = 168 });
-            _repo.Add(new Person() { Id = 4, FName = "Hanne Hansen", Gender = "Female", Age = 72, AvgPulse = 170, Weight = 40, Height = 144 });
+            _repo.Add(new Person() { Id = 4, FName = "Martin Skytte", Gender = "Male", Age = 59, AvgPulse = 120, Weight = 68, Height = 195 });
+            _repo.Add(new Person() { Id = 5, FName = "Thomas Bruun", Gender = "Male", Age = 30, AvgPulse = 135, Weight = 58, Height = 182 });
+            _repo.Add(new Person() { Id = 6, FName = "Arda Hansen", Gender = "Male", Age = 22, AvgPulse = 100, Weight = 70, Height = 168 });
+            _repo.Add(new Person() { Id = 7, FName = "Hanne Hansen", Gender = "Female", Age = 72, AvgPulse = 170, Weight = 40, Height = 144 });
 
         }
         [TestMethod()]
         public void GetTest()
         {
             IEnumerable<Person> persons = _repo.Get();
-            Assert.AreEqual(4, persons.Count());
-            Assert.AreEqual(persons.First().FName, "Martin Skytte");
+            Assert.AreEqual(7, persons.Count());
+            Assert.AreEqual(persons.First().FName, "Jens Peter");
 
             IEnumerable<Person> sortedPersons = _repo.Get(orderBy: "fname");
             IEnumerable<Person> sortedPersonsdesc = _repo.Get(orderBy: "fname_desc");
@@ -73,7 +73,7 @@ namespace WoTDUnitTest
             IEnumerable<Person> sortedPersons5 = _repo.Get(orderBy: "weight");
             IEnumerable<Person> sortedPersons5desc = _repo.Get(orderBy: "weight_desc");
             Assert.AreEqual(sortedPersons5.First().Weight, 40);
-            Assert.AreEqual(sortedPersons5desc.First().Weight, 70);
+            Assert.AreEqual(sortedPersons5desc.First().Weight, 90);
 
             IEnumerable<Person> sortedPersons6 = _repo.Get(orderBy: "height");
             IEnumerable<Person> sortedPersons6desc = _repo.Get(orderBy: "height_desc");
@@ -94,7 +94,7 @@ namespace WoTDUnitTest
         {
             Person p = new() { Id = 5, FName = "birgit Hansen", Gender = "Female", Age = 52, AvgPulse = 150, Weight = 50, Height = 194 };
             Assert.AreEqual(5, _repo.Add(p).Id);
-            Assert.AreEqual(5, _repo.Get().Count());
+            Assert.AreEqual(8, _repo.Get().Count());
             Assert.ThrowsException<ArgumentOutOfRangeException>(()=> _repo.Add(_badperson));
      
 
@@ -107,16 +107,16 @@ namespace WoTDUnitTest
             // Finder Id 1 og remover objekt med id 1
             Assert.AreEqual(1, _repo.Remove(1)?.Id);
             // Finder hvor mange objekter er tilbage i repoet.
-            Assert.AreEqual(3, _repo.Get().Count());
+            Assert.AreEqual(6, _repo.Get().Count());
         }
         [TestMethod()]
         public void UpdateTest()
         {
-            Assert.AreEqual(4, _repo.Get().Count());
+            Assert.AreEqual(7, _repo.Get().Count());
             Person r = new() { Id = 5, FName = "birgit Hansen", Gender = "Female", Age = 52, AvgPulse = 150, Weight = 50, Height = 194 };
             Assert.IsNull(_repo.Update(100, r));
             Assert.AreEqual(1, _repo.Update(1, r)?.Id);
-            Assert.AreEqual(4, _repo.Get().Count());
+            Assert.AreEqual(7, _repo.Get().Count());
 
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => _repo.Update(1, _badperson));
         }
