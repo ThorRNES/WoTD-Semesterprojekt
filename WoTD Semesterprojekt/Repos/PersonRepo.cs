@@ -22,6 +22,11 @@ namespace WoTD_Semesterprojekt.Repos
         public PersonRepo()
         {
         }
+        public Person? Authenticate(string username, string password)
+        {
+            return _persons.FirstOrDefault(p => p.Username == username && p.Password == password);
+        }
+
 
         public IEnumerable<Person> GetAll()
         {

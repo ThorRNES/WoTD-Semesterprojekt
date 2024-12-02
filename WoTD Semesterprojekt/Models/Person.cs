@@ -17,6 +17,9 @@ namespace WorkOutToDO.Models
         public int? AvgPulse { get; set; }
         public int? Weight { get; set; }
         public int? Height { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+
         public List<Measurement> Measurements { get; set; } = new();
 
         public Person(int id, string fName, string gender, int? age, int? avgPulse, int? weight, int? height)
