@@ -13,9 +13,11 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader()
     );
 });
+
 builder.Services.AddControllers();
 builder.Services.AddSingleton<PersonRepo>(new PersonRepo());
 var app = builder.Build();
+app.UseCors("AllowAllOrigins");
 
 
 // Configure the HTTP request pipeline.
