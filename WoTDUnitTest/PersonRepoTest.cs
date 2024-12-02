@@ -85,7 +85,7 @@ namespace WoTDUnitTest
         public void GetTest()
         {
             IEnumerable<Person> persons = _repo.Get();
-            Assert.AreEqual(7, persons.Count());
+            Assert.AreEqual(8, persons.Count());
 
             IEnumerable<Person> sortedPersons = _repo.Get(orderBy: "fname");
             IEnumerable<Person> sortedPersonsDesc = _repo.Get(orderBy: "fname_desc");
@@ -117,7 +117,7 @@ namespace WoTDUnitTest
             };
 
             Assert.AreEqual(8, _repo.Add(validPerson).Id);
-            Assert.AreEqual(8, _repo.Get().Count());
+            Assert.AreEqual(9, _repo.Get().Count());
 
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => _repo.Add(_badperson));
         }
@@ -127,7 +127,7 @@ namespace WoTDUnitTest
         {
             Assert.IsNull(_repo.Remove(100));
             Assert.AreEqual(4, _repo.Remove(4)?.Id);
-            Assert.AreEqual(6, _repo.Get().Count());
+            Assert.AreEqual(7, _repo.Get().Count());
         }
 
         [TestMethod()]
@@ -148,7 +148,7 @@ namespace WoTDUnitTest
 
             Assert.IsNull(_repo.Update(100, updatedPerson));
             Assert.AreEqual(5, _repo.Update(5, updatedPerson)?.Id);
-            Assert.AreEqual(7, _repo.Get().Count());
+            Assert.AreEqual(8, _repo.Get().Count());
 
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => _repo.Update(5, _badperson));
         }
