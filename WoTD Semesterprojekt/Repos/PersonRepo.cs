@@ -17,6 +17,7 @@ namespace WoTD_Semesterprojekt.Repos
             new Person() { Id = 2, FName = "Bo Hans", Gender = "Male", Age = 35, AvgPulse = 110, Height = 195, Weight = 90},
             new Person() { Id = 3, FName = "Jo Momma", Gender = "Female", Age = 55, AvgPulse = 115, Height = 175, Weight = 75},
             new Person() { Id = 4, FName = "Karoline Ellegård", Gender = "Female", Age = 22, AvgPulse = 120, Height = 175, Weight = 75, Username = "Karoline", Password = "enilorak"}
+            new Person() { Id = 5, FName = Admin, Gender = "None", Age = null, AvgPulse = null, Height = null, Weight = null, Username = "Admin", Password = "admin123"  }
         };
 
         

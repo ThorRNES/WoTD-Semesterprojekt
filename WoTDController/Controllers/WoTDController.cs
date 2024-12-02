@@ -124,7 +124,15 @@ namespace WoTDController.Controllers
                 return Unauthorized("Invalid credentials.");
             }
 
-            return Ok(new { user.Id, user.FName, user.Gender }); // Return only non-sensitive information
+            bool isAdmin = user.Username == "Admin";
+
+            return Ok(new
+            {
+                user.Id,
+                user.FName,
+                user.Gender,
+                IsAdmin = isAdmin
+            }); 
         }
 
         public class LoginRequest
@@ -132,6 +140,21 @@ namespace WoTDController.Controllers
             public string Username { get; set; }
             public string Password { get; set; }
         }
+
+
+        [HttpGet("admin/users")]
+        public ActionResult<IEnumerable<Person>> GetAllUsers()
+        {
+            var loggedInUser = HttpContext.Items["User"] as Person;
+            if (loggedInUser?.Username != "Admin")
+            {
+                return Unauthorized("Admin access required.");
+            }
+
+            return Ok(_repo.GetAll());
+        }
+
+
 
     }
 }
