@@ -111,6 +111,29 @@ namespace WoTDController.Controllers
             }
             return Ok(person);
         }
+        [HttpPost("login")]
+        public ActionResult<Person> Login([FromBody] LoginRequest request)
+        {
+            if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
+            {
+                return BadRequest("Username or password is missing.");
+            }
+
+            var user = _repo.Authenticate(request.Username, request.Password);
+            if (user == null)
+            {
+                return Unauthorized("Invalid credentials.");
+            }
+
+            return Ok(new { user.Id, user.FName, user.Gender }); // Return only non-sensitive information
+        }
+
+        public class LoginRequest
+        {
+            public string Username { get; set; }
+            public string Password { get; set; }
+        }
+
     }
 }
 
