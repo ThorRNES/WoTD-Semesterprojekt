@@ -36,6 +36,24 @@ namespace WorkOutToDO.Models
         public Person()
         {
         }
+        public void ValidateUserName()
+        {
+            var reservedKeyword = new[] { "admin" }; 
+            if (Username == null) throw new ArgumentNullException("username cannot be null");
+            if (Username.Length < 3) throw new ArgumentOutOfRangeException("username cannot be <3 characters");
+            if (Username.Length > 20) throw new ArgumentOutOfRangeException("username cannot be >20 characters");
+            if (Username.Contains(" ")) throw new ArgumentException("username cannot contain spaces");
+            if (reservedKeyword.Contains(Username.ToLower())) throw new ArgumentException("username cannot be a reserved word");
+        }
+        public void ValidatePassWord()
+        {
+            if (Password == null) throw new ArgumentNullException("password cannot be null");
+            if (Password.Length < 8 || Password.Length > 128)
+            {
+                throw new ArgumentOutOfRangeException(nameof(Password), "Password must be between 8 and 128 characters.");
+            }
+
+        }
         public void ValidateMeasurements()
         {
             if (Measurements == null) throw new ArgumentNullException("Measurements cannot be null");
@@ -85,6 +103,8 @@ namespace WorkOutToDO.Models
             ValidateWeight();
             ValidateHeight();
             ValidateMeasurements();
+            ValidateUserName();
+            ValidatePassWord();
         }
         public override bool Equals(object? obj)
         {

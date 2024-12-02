@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WorkOutToDO.Models;
-using WorkOutToDO.Repos;
 using WoTD_Semesterprojekt;
 using WoTD_Semesterprojekt.Models;
 using WoTD_Semesterprojekt.Repos;

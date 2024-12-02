@@ -11,7 +11,7 @@ namespace WoTDUnitTest
     [TestClass]
     public class PersonUnitTest
     {
-        private Person personTrue = new Person { Id = 1, FName = "Thor Russel", Gender = "Mand", Age = 25, AvgPulse = 125, Weight = 65, Height = 172 };
+        private Person personTrue = new Person { Id = 1, FName = "Thor Russel", Gender = "Mand", Age = 25, AvgPulse = 125, Weight = 65, Height = 172, Username = "Rizzler", Password = "yeatsnyealbum" };
         private Person measurementNull = new Person { Id = 1, FName = "Thor Russel", Gender = "Mand", Age = 25, AvgPulse = 125, Weight = 65, Height = 172, Measurements = null };
 
         private Person personTrueMeasurement = new Person { Id = 13, FName = "Thor Russel", Gender = "Mand", Age = 25, AvgPulse = 125, Weight = 65, Height = 172, Measurements = new List<Measurement> { new Measurement { Pulse = 125, Date = "2024-11-29" } } };
@@ -99,6 +99,69 @@ namespace WoTDUnitTest
 
             // Assert
             Assert.AreNotEqual(hashCode1, hashCode2);
+        }
+        [TestMethod]
+        public void ValidateUserName_ThrowsArgumentNullException_WhenUsernameIsNull()
+        {
+            var user = new Person { Username = null };
+
+            Assert.ThrowsException<ArgumentNullException>(() => user.ValidateUserName());
+        }
+
+        [TestMethod]
+        public void ValidateUserName_ThrowsArgumentOutOfRangeException_WhenUsernameIsTooShort()
+        {
+            var user = new Person { Username = "ab" };
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => user.ValidateUserName());
+        }
+
+        [TestMethod]
+        public void ValidateUserName_ThrowsArgumentOutOfRangeException_WhenUsernameIsTooLong()
+        {
+            var user = new Person { Username = new string('a', 21) };
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => user.ValidateUserName());
+        }
+
+        [TestMethod]
+        public void ValidateUserName_ThrowsArgumentException_WhenUsernameContainsSpaces()
+        {
+            var user = new Person { Username = "user name" };
+
+            Assert.ThrowsException<ArgumentException>(() => user.ValidateUserName());
+        }
+
+        [TestMethod]
+        public void ValidateUserName_ThrowsArgumentException_WhenUsernameIsReservedKeyword()
+        {
+            var user = new Person { Username = "admin" };
+
+            Assert.ThrowsException<ArgumentException>(() => user.ValidateUserName());
+        }
+
+        [TestMethod]
+        public void ValidatePassWord_ThrowsArgumentNullException_WhenPasswordIsNull()
+        {
+            var user = new Person { Password = null };
+
+            Assert.ThrowsException<ArgumentNullException>(() => user.ValidatePassWord());
+        }
+
+        [TestMethod]
+        public void ValidatePassWord_ThrowsArgumentOutOfRangeException_WhenPasswordIsTooShort()
+        {
+            var user = new Person { Password = "short" };
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => user.ValidatePassWord());
+        }
+
+        [TestMethod]
+        public void ValidatePassWord_ThrowsArgumentOutOfRangeException_WhenPasswordIsTooLong()
+        {
+            var user = new Person { Password = new string('a', 129) };
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => user.ValidatePassWord());
         }
         [TestMethod]
         public void ValidateFNameTest()
