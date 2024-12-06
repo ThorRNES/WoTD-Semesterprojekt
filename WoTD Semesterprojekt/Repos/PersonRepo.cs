@@ -160,6 +160,7 @@ namespace WoTD_Semesterprojekt.Repos
             existingPerson.AvgPulse = person.AvgPulse;
             existingPerson.Weight = person.Weight;
             existingPerson.Height = person.Height;
+            existingPerson.Measurements = person.Measurements;
             return existingPerson;
         }
     }
