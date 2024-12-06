@@ -61,6 +61,17 @@ namespace WoTDController.Controllers
             }
             return Ok(person);
         }
+        [HttpGet("{id}")]
+        public IActionResult GetPersonById(int id)
+        {
+            var person = _repo.GetById(id); // Fetch person by ID from the repo
+            if (person == null)
+            {
+                return NotFound(); // Return 404 if the person is not found
+            }
+
+            return Ok(person); // Return the person's data as JSON
+        }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
