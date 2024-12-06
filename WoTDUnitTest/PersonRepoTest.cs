@@ -3,6 +3,7 @@ using WoTD_Semesterprojekt.Repos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
+using WoTD_Semesterprojekt.Models;
 
 namespace WoTDUnitTest
 {
@@ -20,7 +21,13 @@ namespace WoTDUnitTest
             Weight = -5,              // Invalid, below the minimum weight (0).
             Height = -10,             // Invalid, below the minimum height (0).
             Username = "ad min",      // Invalid, contains a space.
-            Password = "short"        // Invalid, too short for a password.
+            Password = "short",        // Invalid, too short for a password.
+            Measurements = new List<Measurement>
+                {
+                    new Measurement { Pulse = 75, Date = "2024-12-01" },
+                    new Measurement { Pulse = 80, Date = "2024-12-02" },
+                    new Measurement { Pulse = 85, Date = "2024-12-03" }
+                }
         };
 
         [TestInitialize]
@@ -152,5 +159,8 @@ namespace WoTDUnitTest
 
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => _repo.Update(5, _badperson));
         }
+
+
     }
+
 }

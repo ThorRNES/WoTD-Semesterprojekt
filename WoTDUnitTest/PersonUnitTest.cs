@@ -213,6 +213,15 @@ namespace WoTDUnitTest
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => personHeightNeg.ValidateHeight());
         }
         [TestMethod]
+        public void ResetListTest()
+        {
+            List<int> testlist = new List<int> {1, 80, 2, 90,};
+            Person.ResetList(testlist);
+            Assert.AreEqual(0, testlist.Count);
+
+            
+        }
+        [TestMethod]
         public void ValidateTest()
         {
             personTrue.Validate();

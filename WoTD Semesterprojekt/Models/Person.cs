@@ -94,6 +94,15 @@ namespace WorkOutToDO.Models
             if (Height == null) throw new ArgumentNullException("Height cannot be null");
             if (Height < 0) throw new ArgumentOutOfRangeException("Height cannot be less than zero");
         }
+        public static void ResetList<T>(List<T> list)
+        {
+            if (list == null)
+            {
+                throw new ArgumentNullException(nameof(list), "measurement cannot be null");
+            
+            }
+            list.Clear();
+        }
         public void Validate()
         {
             ValidateFName();

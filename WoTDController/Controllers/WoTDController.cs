@@ -91,7 +91,7 @@ namespace WoTDController.Controllers
                 {
                     return NotFound(new { message = "Person not found, id: " + id });
                 }
-            return Ok(person);
+                return Ok(person);
 
              
             
