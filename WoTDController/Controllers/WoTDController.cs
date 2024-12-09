@@ -61,22 +61,33 @@ namespace WoTDController.Controllers
         //    }
         //    return Ok(person);
         //}
-        [HttpGet("{id}")]
         public IActionResult GetPersonById(int id)
         {
             if (id <= 0)
             {
-                return BadRequest("Invalid ID."); // Validate the input and return 400 Bad Request for invalid IDs
+                return BadRequest("Invalid ID.");
             }
 
-            var person = _repo.GetById(id); // Fetch person by ID from the repository
+            var person = _repo.GetById(id);
             if (person == null)
             {
-                return NotFound($"Person not found with ID {id}."); // Return 404 with a descriptive error message
+                return NotFound($"Person not found with ID {id}.");
             }
 
-            return Ok(person); // Return 200 OK with the person's data
+            return Ok(new
+            {
+                person.Id,
+                FName = person.FName,
+                person.Gender,
+                person.Age,
+                AvgPulse = person.AvgPulse,
+                person.Weight,
+                person.Height,
+                person.Username,
+                Measurements = person.Measurements.Select(m => new { m.Date, m.Pulse })
+            });
         }
+
 
 
         [ProducesResponseType(StatusCodes.Status201Created)]
