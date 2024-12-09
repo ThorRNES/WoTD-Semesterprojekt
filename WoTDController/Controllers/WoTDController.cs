@@ -61,6 +61,9 @@ namespace WoTDController.Controllers
         //    }
         //    return Ok(person);
         //}
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("{id}")]
         public IActionResult GetPersonById(int id)
         {
             if (id <= 0)
@@ -77,14 +80,14 @@ namespace WoTDController.Controllers
             return Ok(new
             {
                 person.Id,
-                FName = person.FName,
+                person.FName,
                 person.Gender,
                 person.Age,
-                AvgPulse = person.AvgPulse,
+                person.AvgPulse,
                 person.Weight,
                 person.Height,
                 person.Username,
-                Measurements = person.Measurements.Select(m => new { m.Date, m.Pulse })
+                Measurements = person.Measurements.Select(m => new { m.Pulse, m.Date })
             });
         }
 
