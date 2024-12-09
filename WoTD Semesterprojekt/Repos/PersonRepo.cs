@@ -12,6 +12,8 @@ namespace WoTD_Semesterprojekt.Repos
 {
     public class PersonRepo
     {
+        public int _nextId = 6;
+
         private readonly List<Person> _persons = new()
         {
             new Person() { Id = 1, FName = "Jens Peter", Gender = "Male", Age = 24, AvgPulse = 120, Height = 185, Weight = 80},
@@ -24,6 +26,7 @@ namespace WoTD_Semesterprojekt.Repos
         
         public PersonRepo()
         {
+
         }
         public Person? Authenticate(string username, string password)
         {
@@ -134,7 +137,7 @@ namespace WoTD_Semesterprojekt.Repos
         public Person Add(Person person)
         {
             person.Validate();
-            //person.Id = _nextId++;
+            person.Id = _nextId++;
             _persons.Add(person);
             return person;
         }
