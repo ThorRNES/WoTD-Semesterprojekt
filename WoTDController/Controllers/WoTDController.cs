@@ -47,31 +47,37 @@ namespace WoTDController.Controllers
             return _repo.GetAll();
         }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        // GET api/<TrophyController>/5
-        [HttpGet("{id}")]
-        public ActionResult<Person> Get(int id)
-        {
-            if (id == 0) { return BadRequest("Id not recognized"); } 
-            Person person = _repo.GetById(id);
-            if (person == null)
-            {
-                return NotFound("person not found, id: " + id);
-            }
-            return Ok(person);
-        }
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //// GET api/<TrophyController>/5
+        //[HttpGet("{id}")]
+        //public ActionResult<Person> Get(int id)
+        //{
+        //    if (id == 0) { return BadRequest("Id not recognized"); } 
+        //    Person person = _repo.GetById(id);
+        //    if (person == null)
+        //    {
+        //        return NotFound("person not found, id: " + id);
+        //    }
+        //    return Ok(person);
+        //}
         [HttpGet("{id}")]
         public IActionResult GetPersonById(int id)
         {
-            var person = _repo.GetById(id); // Fetch person by ID from the repo
-            if (person == null)
+            if (id <= 0)
             {
-                return NotFound(); // Return 404 if the person is not found
+                return BadRequest("Invalid ID."); // Validate the input and return 400 Bad Request for invalid IDs
             }
 
-            return Ok(person); // Return the person's data as JSON
+            var person = _repo.GetById(id); // Fetch person by ID from the repository
+            if (person == null)
+            {
+                return NotFound($"Person not found with ID {id}."); // Return 404 with a descriptive error message
+            }
+
+            return Ok(person); // Return 200 OK with the person's data
         }
+
 
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
