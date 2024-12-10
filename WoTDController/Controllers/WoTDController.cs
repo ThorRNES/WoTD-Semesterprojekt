@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using WorkOutToDO.Models;
 using WoTD_Semesterprojekt;
 using WoTD_Semesterprojekt.Models;
@@ -10,6 +11,7 @@ namespace WoTDController.Controllers
 {
     [Route("wotd")]
     [ApiController]
+    [EnableCors("AllowAll")]
     public class WoTDController : ControllerBase
     {
         private readonly PersonRepo _repo;
