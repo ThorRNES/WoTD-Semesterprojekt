@@ -114,20 +114,29 @@ namespace WoTDController.Controllers
         [HttpPut("{id}")]
         public ActionResult<Person> Put(int id, [FromBody] Person value)
         {
+            if (value == null)
+            {
+                return BadRequest("Null or invalid data provided.");
+            }
 
+            Person? existingPerson = _repo.GetById(id);
+            if (existingPerson == null)
+            {
+                return NotFound(new { message = "Person not found, id: " + id });
+            }
 
-                // Use the repository to update the person by ID
-                Person person = _repo.GetById(id);
-                if (person == null)
-                {
-                    return NotFound(new { message = "Person not found, id: " + id });
-                }
-                return Ok(person);
-
-             
             
+            existingPerson.FName = value.FName ?? existingPerson.FName;
+            existingPerson.Gender = value.Gender ?? existingPerson.Gender;
+            existingPerson.Age = value.Age ?? existingPerson.Age;
+            existingPerson.AvgPulse = value.AvgPulse ?? existingPerson.AvgPulse;
+            existingPerson.Weight = value.Weight ?? existingPerson.Weight;
+            existingPerson.Height = value.Height ?? existingPerson.Height;
+            existingPerson.Username = value.Username ?? existingPerson.Username;
 
+            return Ok(existingPerson);
         }
+
         // DELETE api/<WoTDController>/5
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

@@ -23,7 +23,7 @@ namespace WoTD_Semesterprojekt.Repos
             new Person() { Id = 5, FName = "Admin", Gender = "None", Age = null, AvgPulse = null, Height = null, Weight = null, Username = "Admin", Password = "admin123"  }
         };
 
-        
+
         public PersonRepo()
         {
 
@@ -156,18 +156,19 @@ namespace WoTD_Semesterprojekt.Repos
 
         public Person? Update(int id, Person person)
         {
-            person.Validate();
             Person? existingPerson = GetById(id);
             if (existingPerson == null)
             {
                 return null;
             }
+
             existingPerson.FName = person.FName;
             existingPerson.Age = person.Age;
             existingPerson.AvgPulse = person.AvgPulse;
             existingPerson.Weight = person.Weight;
             existingPerson.Height = person.Height;
-            existingPerson.Measurements = person.Measurements;
+            existingPerson.Username = person.Username;
+
             return existingPerson;
         }
     }
